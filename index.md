@@ -1,1 +1,30 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .q{
+            width: 100px;
+            height: 100px;
+            background: palevioletred;
+        }
+    </style>
+</head>
+<body>
+<h2>
+    刘红强
+</h2>
+<div class="q" onclick="qclick()">
+
+</div>
+
+</body>
+<script>
+    function qclick() {
+        document.write('<h2>fjkfhj</h2>')
+    }
+</script>
+</html>
