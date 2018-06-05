@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css</title>
+    <style>
+       #block{
+           perspective: 800px;
+           perspective-origin: 50% 50%;
+
+            overflow: hidden;
+       }
+        #pagegroup{
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+        .page{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            color: white;
+            font-weight: bold;
+            font-size: 330px;
+            line-height: 360px;
+            text-align: center;
+            border-left: 5px solid white;
+
+        }
+        #p1{
+           transform-origin: left;
+            transition:transform 5s linear;
+
+        }
+        #p2,#p3,#p4,#p5,#p6,#p7,#p8,#p9,#p10,#p11,#p12,#p13,#p14{
+            transform-origin: left;
+            transition:transform 3s linear;
+            transform: rotateY(90deg);
+        }
+        #op{
+            margin: 40px auto;
+            text-align: center;
+        }
+        a{
+            margin-left: 20px;
+            text-decoration:none;
+        }
+
+    </style>
+    <script>
+        setInterval(next,5000)
+        var curIndex=1;
+        function next() {
+            if(curIndex==7){
+               return;
+            }
+            else {
+                var curpage=document.getElementById("p"+curIndex);
+                curpage.style.transform="rotateY(-180deg)";
+                curpage.style.transition="transform 5s ease-out"
+                var page=document.getElementById("pagegroup");
+                page.style.transform="translateX(200px)"
+                page.style.transition="transform 1s ease-out"
+                curIndex++;
+                var next=document.getElementById('p'+curIndex);
+                next.style.transform="rotateY(0deg)";
+            }
+
+
+
+        }
+        function prve() {
+            if(curIndex==1){
+                return;
+            }
+            var lastpage=document.getElementById("p"+curIndex);
+            lastpage.style.transform="rotateY(90deg)";
+            curIndex--;
+            var prve=document.getElementById('p'+curIndex);
+            prve.style.transform="rotateY(0deg)";
+
+        }
+    </script>
+</head>
+<body>
+        <div id="block">
+            <div id="pagegroup">
+                <div class="page" id="p1">1</div>
+                <div class="page" id="p2">2</div>
+                <div class="page" id="p3">3</div>
+                <div class="page" id="p4">4</div>
+                <div class="page" id="p5">5</div>
+                <div class="page" id="p6">6</div>
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+<div id="op">
+    <a href="javascript:next()">next</a><a href="javascript:prve()">prve</a>
+</div>
+</body>
+</html>

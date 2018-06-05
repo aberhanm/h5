@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正方体</title>
+    <style>
+        #block{
+            perspective: 800px;
+            perspective-origin: 100% 0%;
+            overflow: hidden;
+        }
+        #pagegroup{
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 200px auto;
+            transform-style: preserve-3d;
+            transform: rotateX(-30deg) rotateY(57deg);
+        }
+        .page{
+            width: 100%;
+            height: 100%;
+            background: lightskyblue;
+            color: white;
+            font-weight: bold;
+
+            position: absolute;
+            border: 1px solid white;
+            opacity: 0.7;
+        }
+        #p1{
+            background: red;
+            transform: rotateX(90deg) translateZ(100px);
+        }
+        #p2{
+            transform-origin: right;
+            transform: rotateY(235deg);
+        }
+        #p3{
+            transform-origin: top;
+            transform: rotateX(235deg);
+        }
+        #p2{
+            background:orange;
+            transform:rotateX(-90deg) translateZ(100px);
+        }
+        #p3{
+            background:yellow;
+            transform:rotateY(-90deg) translateZ(100px);
+        }
+        #p4{
+            background:blue;
+            transform:rotateY(-90deg) translateZ(100px);
+        }
+        #p5{
+            background:gr
+            transform:translateZ(100px);
+        }
+        #p6{
+            background:purple;
+            transform:translateZ(-100px);
+        }
+
+    </style>
+</head>
+<body>
+<div id="block">
+    <div id="pagegroup">
+        <div class="page" id="p1">1</div>
+        <div class="page" id="p2">2</div>
+        <div class="page" id="p3">3</div>
+        <div class="page" id="p4">4</div>
+        <div class="page" id="p5">5</div>
+        <div class="page" id="p6">6</div>
+
+
+
+    </div>
+</div>
+
+</body>
+</html>
