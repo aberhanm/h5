@@ -1,15 +1,23 @@
-var WINDOW_WIDTH=1024;
-var WINDOW_HEIGHT=500;
+var WINDOW_WIDTH;
+var WINDOW_HEIGHT;
 var R=8;
 var  MARGIN_TOP=60;
 var MARGIN_LEFT=30;
 
-const endTime=new Date(2018,5,5,24,59,59);
+const endTime=new Date(2018,5,7,24,59,59);
 var curShowTimeSeconds=0;
 var balls=[];
-const colors=['beige','orange','yellow','green','pink',
+const colors=['red','orange','yellow','green','pink',
     'purple','blue','lightskyblue','deeppink','darkgreen']
 window.onload = function(){
+    WINDOW_WIDTH=window.innerWidth;
+    WINDOW_HEIGHT=window.innerHeight;
+
+    MARGIN_LEFT=Math.round(WINDOW_WIDTH/10);
+    R=Math.round(WINDOW_WIDTH*4/5/108)-1;
+
+    MARGIN_TOP=Math.round(WINDOW_HEIGHT/5)
+
     var canvas=document.getElementById('canvas');
     var context=canvas.getContext('2d');
 
@@ -59,7 +67,7 @@ function update() {
         curShowTimeSeconds=nextShowTimeSeconds;
     }
     updateballs();
-
+    console.log(balls.length);
 }
 
 function updateballs() {
@@ -70,9 +78,17 @@ function updateballs() {
 
         if(balls[i].y>=WINDOW_HEIGHT-R){
             balls[i].y=WINDOW_HEIGHT-R;
-            balls[i].vy=-balls[i].vy*0.7;
+            balls[i].vy=-balls[i].vy*0.65;
         }
-
+    }
+    var count=0;
+    for(var i=0;i<balls.length;i++){
+        if(balls[i].x+R>0 && balls[i].x-R<WINDOW_WIDTH){
+            balls[count++]=balls[i]
+        }
+    }
+    while (balls.length>count){
+        balls.pop();
     }
 }
 
@@ -96,9 +112,8 @@ function addballs(x,y,num) {
 function getCurrentShowTimeSeconds() {
 
     var curtime=new Date();
-    var rec=endTime.getTime()-curtime.getTime();
-    rec=Math.round(rec/1000);
-    return rec >=0? rec:0;
+    var rec=curtime.getHours()*3600+curtime.getMinutes()*60+curtime.getSeconds()
+    return rec;
 }
 
 function render( cxt ){
@@ -131,11 +146,11 @@ function render( cxt ){
 }
 
 function renderDigit( x , y , num , cxt ){
-    cxt.fillStyle='black';
+    cxt.fillStyle='lightseagreen';
     for(var i=0;i<digit[num].length;i++){
         for(var j=0;j<digit[num][i].length;j++){
             if(digit[num][i][j]==1){
-                cxt.beginPath(``);
+                cxt.beginPath();
                 cxt.arc(x+j*2*(R+1)+(R+1),y+i*2*(R+1)+(R+1),R,0,2*Math.PI);
                 cxt.closePath();
 
